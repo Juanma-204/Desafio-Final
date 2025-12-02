@@ -6,6 +6,7 @@
 #include <QTimer> //para el loop o el tiempo del nivel//
 #include <QKeyEvent> //para implementar el tecleado, jugar con el teclado//
 #include "vehiculo.h"
+#include "obstaculo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,12 +27,25 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *escena;
     QTimer *timer;
+
     Vehiculo *jugador;
+    Vehiculo *bot1;
+    Vehiculo *bot2;
+    Obstaculo *muro_rojo;
+
+    bool juegoTerminado;
+    int vueltasJugador;
+    int vueltasBot1; //Ideal para cuando se termine de modelar el nivel 1//
+    int vueltasBot2;
+
+    QGraphicsRectItem *meta;
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
 
     //Funciones graficas, especicifamente para el nivel 1//
+    void verificarLimites(Vehiculo *v);
+    void verificarMeta(Vehiculo *v, int &vueltas);
     void configurarNivel1();
     void verificarColisionesNivel1();
 };

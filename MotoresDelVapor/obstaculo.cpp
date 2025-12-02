@@ -21,3 +21,8 @@ void Obstaculo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     //En este aprtado se dibuja un piston para el nivel 3//
     painter->drawRect(0, 0, 30, 80);
 }
+
+QRectF Obstaculo::boundingRect() const
+{
+    return QRectF(0, 0, 30, 80);
+}

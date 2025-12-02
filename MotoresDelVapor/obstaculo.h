@@ -13,6 +13,8 @@ public:
     //Su movimiento oscilatorio armonico para el nivel 3//
     void actualizarMovimientoOscilatorio(double tiempoTotal);
 
+    QRectF boundingRect() const override;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
