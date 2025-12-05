@@ -23,11 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::actualizarJuego);
 
-    //SE empieza la configuracion para el primer nivel//
-    //configurarNivel1();
-    //configurarNivel2();
-    configurarNivel3();
-    verificarColisionesNivel2();
+    nivelActual = 1;
+    configurarNivel1();
 
     timer->start(16);
 }
@@ -148,26 +145,29 @@ void MainWindow::actualizarJuego()
 {
     if (juegoTerminado) return;
 
-    static double tiempoTotal = 0.0;
-    double dt = 16.0 / 1000.0;
+    if (nivelActual == 1) {
+        jugador->actualizarFisicaNivel1();
+        verificarColisionesNivel1();
+    }
+    else if (nivelActual == 2) {
+        jugador->actualizarFisicaNivel2();
+        verificarColisionesNivel2();
+    }
+    else if (nivelActual == 3) {
+        jugador->actualizarFisicaNivel2();
+        verificarColisionesNivel2();
 
-    foreach (QGraphicsItem *item, obstaculosNivel2) {
-
-        Obstaculo *obs = dynamic_cast<Obstaculo*>(item);
-        if (obs) {
-            obs->actualizarMovimientoOscilatorio(tiempoTotal);
+        foreach (QGraphicsItem *item, obstaculosNivel2) {
+            Obstaculo *obs = dynamic_cast<Obstaculo*>(item);
+            if (obs) {
+                obs->actualizarMovimientoOscilatorio(tiempoNivel3);
+            }
         }
+
+        tiempoNivel3 += (16.0 / 1000.0);
     }
 
     verificarLimites(jugador);
-    verificarMeta(jugador, vueltasJugador);
-
-    jugador->actualizarFisicaNivel2();
-    verificarColisionesNivel2();
-
-    //verificarColisionesNivel1();
-
-    tiempoTotal +=dt;
 }
 
 
@@ -233,8 +233,8 @@ void MainWindow::verificarLimites(Vehiculo *v)
             qDebug() << "Total de vueltas:" << vueltasJugador;
 
             if (vueltasJugador >= 5) {
-                juegoTerminado = true;
-                qDebug() << "Ganaste";
+                siguienteNivel();
+                return;
             }
         }
 
@@ -244,6 +244,30 @@ void MainWindow::verificarLimites(Vehiculo *v)
          //Se le aplica la penalizacionh de 25% por el obstaculo //
         v->setVelX(v->getVelX() * 0.75);
     }
+}
+
+
+void MainWindow::siguienteNivel()
+{
+    timer->stop();
+
+    if (nivelActual == 1) {
+        nivelActual = 2;
+        configurarNivel2();
+    }
+    else if (nivelActual == 2) {
+        nivelActual = 3;
+        tiempoNivel3 = 0;
+        configurarNivel3();
+    }
+    else if (nivelActual == 3) {
+        juegoTerminado = true;
+        qDebug() << "¡FELICIDADES! HAS COMPLETADO TODOS LOS NIVELES.";
+        // Aquí podrías mostrar un GraphicsTextItem que diga "GANASTE"
+        return;
+    }
+
+    timer->start(16);
 }
 
 //COnrtoles para el vehiculo//

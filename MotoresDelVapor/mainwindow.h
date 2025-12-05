@@ -28,6 +28,9 @@ private:
     QGraphicsScene *escena;
     QTimer *timer;
 
+    int nivelActual;
+    double tiempoNivel3;
+
     Vehiculo *jugador;
     Vehiculo *bot1;
     Vehiculo *bot2;
@@ -39,11 +42,14 @@ private:
     int vueltasBot2;
 
     QGraphicsRectItem *meta;
+
     QList<QGraphicsItem*> obstaculosNivel2;
     void verificarColisionesNivel2();
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
+
+    void siguienteNivel();
 
     //Funciones graficas, especicifamente para el nivel 1//
     void verificarLimites(Vehiculo *v);
