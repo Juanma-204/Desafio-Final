@@ -1,4 +1,5 @@
 #include "vehiculo.h"
+#include <QDebug>
 
 Vehiculo::Vehiculo() {
     masa = 50.0;
@@ -74,10 +75,23 @@ void Vehiculo::actualizarFisicaNivel2() {
 }
 
 void Vehiculo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    painter->setBrush(colorCarro); //Se hace que el jugador o carro sea de azul//
-    painter->drawRect(0, 0, 60, 30); //Se setea o se pone la forma del carro, o las medidaas//
+
+    if (!carroSprite.isNull()) {
+        painter->drawPixmap(0, 0, 60, 60, carroSprite);
+
+    } else {
+        painter->setBrush(colorCarro);
+        painter->drawRect(0, 0, 60, 30);
+    }
 }
 
 void Vehiculo::setColor(QColor nuevoColor) {
     colorCarro = nuevoColor;
     }
+
+void Vehiculo::setColor(QColor color, QString skinPath) {
+    colorCarro = color;
+    if (!carroSprite.load(skinPath)) {
+        qDebug() << "ERROR: No se pudo cargar el sprite del vehiculo desde:" << skinPath;
+    }
+}

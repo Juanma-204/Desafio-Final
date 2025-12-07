@@ -43,28 +43,28 @@ void MainWindow::configurarNivel1()
 
     //Se crea el vehiculo en la escena y lo ponemos en el piso//
     jugador = new Vehiculo();
-    jugador->setColor(Qt::blue);
+    jugador->setColor(Qt::blue, ":/carro1.png");
     escena->addItem(jugador);
     jugador->setPosicion(50, 400);
 
     //Se crean los bots, y se ponen en las mismas coordenadas del jugador, para que empiecen en igualdad de condiciones//
     bot1 = new Vehiculo();
-    bot1->setColor(Qt::red);
+    bot1->setColor(Qt::red, ":/carrobots.png");
     bot1->setPosicion(50, 400);
     bot1->setFuerzaMotor(140);
     escena->addItem(bot1);
 
     bot2 = new Vehiculo();
-    bot2->setColor(Qt::magenta);
+    bot2->setColor(Qt::magenta, ":/carrobots.png");
     bot2->setPosicion(50, 400);
     bot2->setFuerzaMotor(160);
     escena->addItem(bot2);
 
 
     //Se dibuja el piso, para que el carro sepa dond delimita//
-    QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
+    /*QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
     piso->setBrush(Qt::darkGreen);
-    escena->addItem(piso);
+    escena->addItem(piso);*/
 
     //Se crea el obstaculo o la penalizacion que es el objeto rojo//
     muro_rojo = new Obstaculo(
@@ -73,9 +73,13 @@ void MainWindow::configurarNivel1()
     escena->addItem(muro_rojo);
 
     //Se dibuja la meta//
-    meta = new QGraphicsRectItem(0, 0, 10, 600);
+    /*meta = new QGraphicsRectItem(0, 0, 10, 600);
     meta->setPos(0, 0);
-    escena->addItem(meta);
+    escena->addItem(meta);*/
+
+    QPixmap fondo1(":/Nivel1.png");
+    escena->setBackgroundBrush(fondo1.scaled(1000, 600));
+    ui->graphicsView->setScene(escena);
 }
 
 
@@ -94,31 +98,32 @@ void MainWindow::configurarNivel2(){
 
     // Se crea el jugador//
     jugador = new Vehiculo();
+    jugador->setColor(Qt::blue, ":/carro2.png");
     escena->addItem(jugador);
     jugador->setPosicion(50, 400);
 
     //Se crean los bots, y se ponen en las mismas coordenadas del jugador, para que empiecen en igualdad de condiciones//
     bot1 = new Vehiculo();
-    bot1->setColor(Qt::red);
+    bot1->setColor(Qt::red, ":/carrobots.png");
     bot1->setPosicion(50, 400);
     bot1->setFuerzaMotor(140);
     escena->addItem(bot1);
 
     bot2 = new Vehiculo();
-    bot2->setColor(Qt::magenta);
+    bot2->setColor(Qt::magenta, ":/carrobots.png");
     bot2->setPosicion(50, 400);
     bot2->setFuerzaMotor(160);
     escena->addItem(bot2);
 
     //Se hace el piso //
-    QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
+    /*QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
     piso->setBrush(Qt::darkGreen);
-    escena->addItem(piso);
+    escena->addItem(piso);*/
 
-    meta = new QGraphicsRectItem(0, 0, 10, 600);
+    /*meta = new QGraphicsRectItem(0, 0, 10, 600);
     meta->setPos(0, 0);
     meta->setBrush(Qt::yellow);
-    escena->addItem(meta);
+    escena->addItem(meta);*/
 
     muro_rojo=nullptr;
 
@@ -134,6 +139,10 @@ void MainWindow::configurarNivel2(){
     escena->addItem(obs3);
     obstaculosNivel2.append(obs3);
 
+    QPixmap fondo1(":/Nivel2.png");
+    escena->setBackgroundBrush(fondo1.scaled(1000, 600));
+    ui->graphicsView->setScene(escena);
+
 }
 
 void MainWindow::configurarNivel3()
@@ -148,25 +157,26 @@ void MainWindow::configurarNivel3()
     ui->graphicsView->setScene(escena);
 
     jugador = new Vehiculo();
+    jugador->setColor(Qt::blue, ":/carro3.png");
     jugador->setPosicion(50, 400);
     escena->addItem(jugador);
 
     //Se crean los bots, y se ponen en las mismas coordenadas del jugador, para que empiecen en igualdad de condiciones//
     bot1 = new Vehiculo();
-    bot1->setColor(Qt::red);
+    bot1->setColor(Qt::red, ":/carrobots.png");
     bot1->setPosicion(50, 400);
     bot1->setFuerzaMotor(140);
     escena->addItem(bot1);
 
     bot2 = new Vehiculo();
-    bot2->setColor(Qt::magenta);
+    bot2->setColor(Qt::magenta, ":/carrobots.png");
     bot2->setPosicion(50, 400);
     bot2->setFuerzaMotor(160);
     escena->addItem(bot2);
 
-    QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
+    /*QGraphicsRectItem *piso = new QGraphicsRectItem(0, 430, 1000, 10);
     piso->setBrush(Qt::darkGray);
-    escena->addItem(piso);
+    escena->addItem(piso);*/
 
     obstaculosNivel2.clear();
 
@@ -185,6 +195,10 @@ void MainWindow::configurarNivel3()
     Obstaculo *obs4 = new Obstaculo(850, 300, 50, 4.0);
     escena->addItem(obs4);
     obstaculosNivel2.append(obs4);
+
+    QPixmap fondo1(":/Nivel3.png");
+    escena->setBackgroundBrush(fondo1.scaled(1000, 600));
+    ui->graphicsView->setScene(escena);
 }
 
 

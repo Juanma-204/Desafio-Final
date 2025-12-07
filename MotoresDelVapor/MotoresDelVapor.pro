@@ -28,3 +28,29 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    recursos.qrc \
+    recursos.qrc \
+    recursos.qrc
+
+DISTFILES += \
+    sprites/Nivel 1.png \
+    sprites/Nivel 1.png \
+    sprites/Nivel 1.png \
+    sprites/Nivel 2.png \
+    sprites/Nivel 2.png \
+    sprites/Nivel 2.png \
+    sprites/Nivel 3.png \
+    sprites/Nivel 3.png \
+    sprites/Nivel 3.png \
+    sprites/Nivel1.png \
+    sprites/Nivel2.png \
+    sprites/Nivel3.png \
+    sprites/Pinchos.png \
+    sprites/Piston.png \
+    sprites/Velocimetro.png \
+    sprites/carro1.png \
+    sprites/carro2.png \
+    sprites/carro3.png \
+    sprites/carrobots.png

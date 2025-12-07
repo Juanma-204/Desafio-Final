@@ -3,6 +3,7 @@
 
 #include "objetomovil.h"
 #include <cmath>
+#include <QPixmap>
 
 class Obstaculo : public ObjetoMovil
 {
@@ -14,6 +15,8 @@ public:
     void actualizarMovimientoOscilatorio(double tiempoTotal);
 
     QRectF boundingRect() const override;
+
+    void setSprite(const QString &path);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 

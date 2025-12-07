@@ -4,6 +4,7 @@
 #include "objetomovil.h"
 #include <cmath>
 #include <QColor>
+#include <QPixmap>
 
 class Vehiculo : public ObjetoMovil
 {
@@ -22,6 +23,7 @@ public:
     // Para dibujar diferente al carro dependiendo del nivel//
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void setColor (QColor nuevoColor);
+    void setColor(QColor color, QString skinPath);
 
     void setFuerzaMotor(double fuerza) { fuerzaMotor = fuerza; }
 
@@ -33,6 +35,7 @@ private:
     bool motorEncendido;    //el estado de la tecla
 
     QColor colorCarro;
+    QPixmap carroSprite;
 
     //Y las variables de los parametros a la hora de saltar//
     double gravedad;
