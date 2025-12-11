@@ -54,6 +54,7 @@ private:
     //Funciones graficas, especicifamente para el nivel 1//
     void verificarLimites(Vehiculo *v, int &vueltas, QString nombre);
     void verificarMeta(Vehiculo *v, int &vueltas);
+    void configurarMenu();
     void configurarNivel1();
     void configurarNivel2();
     void configurarNivel3();

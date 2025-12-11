@@ -10,5 +10,6 @@
         <file>Velocimetro.png</file>
         <file>Nivel2.png</file>
         <file>Nivel3.png</file>
+        <file>pantalla_carga.png</file>
     </qresource>
 </RCC>

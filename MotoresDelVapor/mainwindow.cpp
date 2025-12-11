@@ -23,10 +23,37 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::actualizarJuego);
 
-    nivelActual = 1;
+    /*nivelActual = 1;
     configurarNivel1();
 
-    timer->start(16);
+    timer->start(16);*/
+    configurarMenu();
+}
+
+void MainWindow::configurarMenu()
+{
+    nivelActual = 0;
+
+    timer->stop();
+
+    escena = new QGraphicsScene(this);
+    escena->setSceneRect(0, 0, 1000, 600);
+    ui->graphicsView->setScene(escena);
+
+    QPixmap fondo(":/pantalla_carga.png");
+    escena->setBackgroundBrush(fondo.scaled(1000, 600));
+
+    QGraphicsTextItem *titulo = new QGraphicsTextItem("MOTORES DEL VAPOR RACING");
+    titulo->setFont(QFont("Arial", 40, QFont::Bold));
+    titulo->setDefaultTextColor(Qt::white);
+    titulo->setPos(100, 100);
+    escena->addItem(titulo);
+
+    QGraphicsTextItem *mensaje = new QGraphicsTextItem("PRESIONE ESPACIO PARA EMPEZAR");
+    mensaje->setFont(QFont("Arial", 15, QFont::Bold));
+    mensaje->setDefaultTextColor(Qt::yellow);
+    mensaje->setPos(331, 400);
+    escena->addItem(mensaje);
 }
 
 void MainWindow::configurarNivel1()
@@ -394,6 +421,16 @@ void MainWindow::siguienteNivel()
 //COnrtoles para el vehiculo//
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    //Se define la tecla para empezar el juego//
+    if (nivelActual == 0) {
+        if (event->key() == Qt::Key_Space) {
+            nivelActual = 1;
+            configurarNivel1();
+            timer->start(16);
+        }
+        return;
+    }
+
     //Se acelera con D, aunque principalmente se tenia pensado con W, con D queda bien//
     if(event->key() == Qt::Key_D) {
         jugador->setFuerzaMotor(200);
@@ -412,6 +449,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 }
 
+
+//Cuando se realientiza el coche//
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_D || event->key() == Qt::Key_A) {
