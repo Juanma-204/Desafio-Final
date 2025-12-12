@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>carro1.png</file>
+        <file>carro2.png</file>
+        <file>carro3.png</file>
+        <file>carrobots.png</file>
+        <file>Nivel1.png</file>
+        <file>Pinchos.png</file>
+        <file>Piston.png</file>
+        <file>Velocimetro.png</file>
+        <file>Nivel2.png</file>
+        <file>Nivel3.png</file>
+        <file>pantalla_carga.png</file>
+        <file>motor.mp3</file>
+    </qresource>
+</RCC>
